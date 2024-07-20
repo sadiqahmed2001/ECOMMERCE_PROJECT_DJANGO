@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGOUT</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+        div {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-delay: 2s;
+  }
+  
+  @keyframes example {
+    0%   {background-color:rgb(229, 215, 215); left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:rgb(112, 33, 33); left:0px; top:0px;}
+  }
+    </style>
+</head>
+<body style="background-image: url();">
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-4 mx-auto p-3 mb-2 bg-danger-subtle text-danger-emphasis shadow-lg p-3 mb-5 bg-body-tertiary rounde">
+            <h2>LOGOUT</h2>
+            <div></div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <script src="{% static 'javascript/bootstrap.min.js' %}"></script> 
+ 
+</body>
+</html>

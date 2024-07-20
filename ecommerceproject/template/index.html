@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> 
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <link rel="icon" type="image/png" href="../static/images/web-programming.png">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/index"><i class="fa-solid fa-house"> Home</i></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                {% if request.user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/ulogout"><i class="fa-solid fa-right-from-bracket"> LOGOUT</i></a>
+                                </li>
+                                <div style="position: relative; left: 150px;"  >
+                                    <h4>Welcome..<span>{{ request.user.first_name|default:request.user.username }}</span></h4>
+                                </div>
+                                {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/register"><i class="fa-solid fa-registered">Registration</i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/ulogin"><i class="fa-solid fa-gear"> LOGIN</i></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="/contact"><i class="fa-solid fa-address-book"></i><strong>ContactUs</strong></a>
+                                </li>{% endif %}
+
+                            </ul>
+                            <form class="d-flex ms-auto" role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12" >
+                <button onclick="backwardPageLoader()"><i class="fa-solid fa-circle-left"></i></button>
+                <button onclick="forwardPageLoader()"><i class="fa-solid fa-circle-arrow-right"></i></button>
+            </div>
+            <div class="col-12 mt-3">
+                <input type="checkbox" class="switch-checkbox" id="plug-switch">
+                <label for="plug-switch" class="switch-label"></label>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-1 col-md-1">
+                <h4>Filter</h4>
+                <hr>
+                <a href="/index">ALL</a><br>
+                <a href="">Electrical</a><br>
+                <a href="">Home Appliances</a><br>
+                <ul>
+                    <p>Clothing</p>
+                    <li><a href="/filterbycategory/1">Mens</a></li>
+                    <li><a href="/filterbycategory/2">Womens</a></li>
+                    <li><a href="/filterbycategory/3">Kids</a></li>
+                </ul>
+                <a href="">Gardening</a><br>
+                <a href=""></a><br>
+
+                <h4>Sort</h4>
+                <hr>
+                <a href="/sortbyprice/0">High-To-Low</a><br>
+                <a href="/sortbyprice/1">Low To High</a><br><br>
+                
+
+                <h4>Filter by Price</h4>
+                <hr>
+                <form action="/filterbyprice" method="GET">
+                    <div class="mb-3">
+                        <label for="minPrice" class="form-label"  ><strong>Minimum Price</strong></label>
+                        <input type="number" class="form-control" id="minPrice" name="minimum" placeholder="Enter your minimum price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="maxPrice" class="form-label"><strong>Maximum Price</strong></label>
+                        <input type="number" class="form-control" id="maxPrice" name="maximum" placeholder="Enter your maximum price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="averagePrice" class="form-label"><strong>Average</strong></label>
+                        <input type="number" class="form-control" id="averagePrice" name="average" placeholder="Enter your average price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="discount" class="form-label"><strong>Discount Since Launch</strong></label>
+                        <input type="number" class="form-control" id="discount" placeholder="Enter your discount">
+                    </div>
+                    <button type="submit" class="btn btn-success" value="search"><strong>submit</strong></button>
+                </form>
+            </div>            
+            <div class="col-lg-9 col-md-8"> 
+                <div class="row ">
+                    {% for products  in Products %}
+                    <div class="col-md-3">
+                        <div class="card"  style="width: 18rem;">
+                            <img loading="lazy" src="{{products.product_image.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5>Name :{{products.name}} </h5>
+                                <p>price: {{products.price}} </p>
+                                <p>Category :{{products.category}} </p>
+                                <p>details :{{products.description}} </p>
+                                <a href="/product_details/{{products.id}}" class="buy-button"><button>GO</button></a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {% endfor %}
+
+                    <!-- Additional cards can be added here -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3" style="background-color: azure;">
+            <div class="col-md-4">
+                <strong>ADDRESS</strong>
+                <hr>
+                <!-- Address details can be added here -->
+            </div>
+            <div class="col-md-4">
+                <strong>Quick Links</strong>
+                <hr>
+                <p><a href="index.html">Home</a></p>
+                <p><a href="">About Us</a></p>
+                <p><a href="contact.html"><strong>Contact Us</strong></a></p>
+            </div>
+            <div class="col-md-4">
+                <strong>Connect With Us</strong>
+                <hr>
+                <p><a href="#" style="color: brown;"><i class="fa-brands fa-square-instagram"></i></a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'javascript/bootstrap.min.js' %}"></script>  
+</body>
+</html>

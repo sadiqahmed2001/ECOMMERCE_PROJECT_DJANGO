@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body style="background-image: url();">
+    
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-4 mx-auto p-3 mb-2 bg-danger-subtle text-danger-emphasis shadow-lg p-3 mb-5 bg-body-tertiary rounde">
+              
+            <h2>Registration Form</h2>
+            {% if error_message %}
+            <div class="alert alert-danger">
+              {{error_message}}
+            </div>
+            {% endif %}
+
+
+            {% if success %}
+            <div class="alert alert-success">
+              {{success}}
+            </div>
+            {% endif %}
+
+
+            <form method="POST" action="">
+              {% csrf_token %}
+                <div class="mb-3">
+                  <label for="name">Name</label>
+                  <input type="text" name="name"><br><br>
+                  <label for="exampleInputEmail1" class="form-label"><strong> Email address</strong></label>
+                  <input type="email" name="email" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp"  id="one" placeholder="Enter your Email">
+                  <div id="emailHelp" class="form-text">We'll  share your email with someone else.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label"><strong> Password</strong></label>
+                  <input type="password" name="password" class="form-control" id="exampleInputPassword1" id="two" placeholder="Enter your password">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label"><strong>Conform Password</strong></label>
+                    <input type="password" name="cpassword" class="form-control" id="exampleInputPassword1" id="two" placeholder="Conform your password">
+                  </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1"><strong>Check me out</strong></label>
+                </div>
+                <section class="setting">
+                <button type="submit" class="btn btn-danger"><strong>Register</strong></button>
+                Already Registered? <a href="/ulogin">login Here</a>
+            </section>
+              </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'javascript/bootstrap.min.js' %}"></script>
+
+     
+ 
+</body>
+</html>

@@ -1,0 +1,76 @@
+/* .max-width{
+    border: 3px solid brown;
+    max-width: 700px solid;
+} */
+
+/* div {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: relative;
+    animation-name: example;
+    animation-duration: 4s;
+    animation-delay: 2s;
+  }
+  
+  @keyframes example {
+    0%   {background-color:rgb(229, 215, 215); left:0px; top:0px;}
+    25%  {background-color:yellow; left:200px; top:0px;}
+    50%  {background-color:blue; left:200px; top:200px;}
+    75%  {background-color:green; left:0px; top:200px;}
+    100% {background-color:rgb(112, 33, 33); left:0px; top:0px;}
+  } */
+
+  /* Hide the checkbox */
+  .switch-checkbox {
+    display: none;
+  }
+  
+  /* Style the plug (label) */
+  .switch-label {
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+    background-color: gray;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  /* Style the plug connector */
+  .switch-label::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translate(0, -50%);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  /* Move the connector to the right when the checkbox is checked */
+  .switch-checkbox:checked + .switch-label::after {
+    left: calc(100% - 25px);
+    transform: translate(0, -50%);
+  }
+  
+  /* Dark mode styles */
+  .dark-mode {
+    background-color: black;
+    color: white;
+  }
+  
+  .dark-mode .switch-label {
+    background-color: darkgray;
+  }
+  
+  .dark-mode .switch-label::after {
+    background-color: black;
+  }
+  
+  .dark-mode .content {
+    color: white;
+  }
