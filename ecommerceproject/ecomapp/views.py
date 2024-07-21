@@ -195,18 +195,18 @@ def fetchorder(request):
 
 
 def makepayment(request):
-    client = razorpay.Client(auth=("key", "security key"))
+    client = razorpay.Client(auth=("rzp_test_JjQ72OskgZ3YwQ", "Wve5BMxfecpjBRVbi04U19sj"))
     context = {}
     orders = Order.objects.filter(user_id=request.user.id)
     context["orders"] = orders
     sum=0
     for x in orders:
-        sum=x.amt*x.qty
+        sum=sum+x.amt*x.qty
         orderid=x.order_id
     data = {
         "amount": sum * 100,
         "currency": "INR",
-        "receipt": orderid
+        "receipt": "order_id",
     }
     payment = client.order.create(data=data)
     context["payment"] = payment
