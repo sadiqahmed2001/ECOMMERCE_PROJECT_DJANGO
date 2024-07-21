@@ -199,11 +199,14 @@ def makepayment(request):
     context = {}
     orders = Order.objects.filter(user_id=request.user.id)
     context["orders"] = orders
-    order_info = orders.aggregate(total_amount='amt', last_order_id='order_id')
+    sum=0
+    for x in orders:
+        sum=x.amt*x.qty
+        orderid=x.order_id
     data = {
-        "amount": order_info['total_amount'] * 100,
+        "amount": sum * 100,
         "currency": "INR",
-        "receipt": order_info['last_order_id']
+        "receipt": orderid
     }
     payment = client.order.create(data=data)
     context["payment"] = payment
